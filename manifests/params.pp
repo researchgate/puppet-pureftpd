@@ -28,10 +28,10 @@ class pureftpd::params {
       if ! empty($config_ldap) {
         $package_name         = ['pure-ftpd', 'pure-ftpd-ldap']
         $service_name    = 'pure-ftpd-ldap'
-      } else if ! empty($config_mysql) {
+      } elsif ! empty($config_mysql) {
         $package_name         = ['pure-ftpd', 'pure-ftpd-mysql']
         $service_name    = 'pure-ftpd-mysql'
-      } else if ! empty($config_pgsql) {
+      } elsif ! empty($config_pgsql) {
         $package_name         = ['pure-ftpd', 'pure-ftpd-postgresql']
         $service_name    = 'pure-ftpd-postgresql'
       }
