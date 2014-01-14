@@ -26,14 +26,17 @@ class pureftpd::params {
     }
     'Debian': {
       if ! empty($config_ldap) {
-        $package_name         = ['pure-ftpd', 'pure-ftpd-ldap']
+        $package_name         = 'pure-ftpd-ldap'
         $service_name    = 'pure-ftpd-ldap'
+        notice "${package_name} will be installed"
       } elsif ! empty($config_mysql) {
-        $package_name         = ['pure-ftpd', 'pure-ftpd-mysql']
+        $package_name         = 'pure-ftpd-mysql'
         $service_name    = 'pure-ftpd-mysql'
+        notice "${package_name} will be installed"
       } elsif ! empty($config_pgsql) {
-        $package_name         = ['pure-ftpd', 'pure-ftpd-postgresql']
+        $package_name         = 'pure-ftpd-postgresql'
         $service_name    = 'pure-ftpd-postgresql'
+        notice "${package_name} will be installed"
       }
       $package_name_selinux = $package_name
 
