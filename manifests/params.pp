@@ -25,15 +25,15 @@ class pureftpd::params {
       $pgsql_conf_path = "${config_dir}/pureftpd-pgsql.conf"
     }
     'Debian': {
-      if ! empty($config_ldap) {
+      if ! empty($pureftpd::config_ldap) {
         $package_name         = 'pure-ftpd-ldap'
         $service_name    = 'pure-ftpd-ldap'
         notice "${package_name} will be installed"
-      } elsif ! empty($config_mysql) {
+      } elsif ! empty($pureftpd::config_mysql) {
         $package_name         = 'pure-ftpd-mysql'
         $service_name    = 'pure-ftpd-mysql'
         notice "${package_name} will be installed"
-      } elsif ! empty($config_pgsql) {
+      } elsif ! empty($pureftpd::config_pgsql) {
         $package_name         = 'pure-ftpd-postgresql'
         $service_name    = 'pure-ftpd-postgresql'
         notice "${package_name} will be installed"
