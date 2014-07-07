@@ -46,13 +46,13 @@ class pureftpd::params {
       $conf_path       = "${config_dir}/pure-ftpd.conf"
 
       $ldap_conf_erb   = 'pure-ftpd.conf.erb'
-      $ldap_conf_path  = "${config_dir}/pureftpd-ldap.conf"
+      $ldap_conf_path  = "${config_dir}/db/ldap.conf"
 
       $mysql_conf_erb  = 'pure-ftpd.conf.erb'
-      $mysql_conf_path = "${config_dir}/pureftpd-mysql.conf"
+      $mysql_conf_path = "${config_dir}/db/mysql.conf"
 
       $pgsql_conf_erb  = 'pure-ftpd.conf.erb'
-      $pgsql_conf_path = "${config_dir}/pureftpd-pgsql.conf"
+      $pgsql_conf_path = "${config_dir}/db/pgsql.conf"
     }
     default:{
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
