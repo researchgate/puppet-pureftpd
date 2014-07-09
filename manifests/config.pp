@@ -134,11 +134,28 @@ class pureftpd::config(
     'PAMAuthentication',
   ]
 
-  file { $pureftpd::params::conf_path:
-    ensure  => file,
-    content => template("${module_name}/${pureftpd::params::conf_erb}"),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  case $::osfamily {
+    'Debian': {
+      $config_options.foreach { |$key|
+        if downcase($key) {
+          file { "${pureftpd::params::conf_path}/conf/${key}" :
+            ensure  => file,
+            owner   => "root",
+            group   => "root",
+            replace => 'yes',
+            content  => "${downcase($key)}",
+          }
+        }
+      }
+    }
+    default: {
+      file { $pureftpd::params::conf_path:
+        ensure  => file,
+        content => template("${module_name}/${pureftpd::params::conf_erb}"),
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
+      }
+    }
   }
 }
