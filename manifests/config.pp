@@ -136,7 +136,7 @@ class pureftpd::config(
 
   case $::osfamily {
     'Debian': {
-      $config_options.foreach { |$key|
+      $config_options.each { |$key|
         if downcase($key) {
           file { "${pureftpd::params::conf_path}/conf/${key}" :
             ensure  => file,
