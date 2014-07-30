@@ -131,14 +131,14 @@ class pureftpd::config(
     'ExtAuth',
     'UnixAuthentication',
     'PAMAuthentication',].each |$key| {
-    if is_string(downcase($key)) {
-      notice "${downcase($key)} will be installed"
+    if inline_template("<%= @key.downcase %>") == '' {
+      notice "${key} will be installed"
       file { "${pureftpd::params::config_dir}/conf/${key}" :
         ensure  => file,
         owner   => "root",
         group   => "root",
         replace => 'yes',
-        content  => "${downcase($key)}",
+        content  => inline_template("<%= @key.downcase %>"),
       }
     }
   }
