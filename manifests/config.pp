@@ -138,6 +138,7 @@ class pureftpd::config(
     'Debian': {
       $config_options.each { |$key|
         if downcase($key) {
+          notice "${downcase($key)} will be installed"
           file { "${pureftpd::params::conf_path}/conf/${key}" :
             ensure  => file,
             owner   => "root",
