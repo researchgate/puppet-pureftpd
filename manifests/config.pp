@@ -69,8 +69,7 @@ class pureftpd::config(
 ) inherits pureftpd::params {
 
   # options taken from pure-ftpd-1.0.30/configuration-file/pure-config.pl
-  $conf_options = [
-    'IPV4Only',
+  [ 'IPV4Only',
     'IPV6Only',
     'ChrootEveryone',
     'BrokenClientsCompatibility',
@@ -131,31 +130,15 @@ class pureftpd::config(
     'PureDB',
     'ExtAuth',
     'UnixAuthentication',
-    'PAMAuthentication',
-  ]
-
-  case $::osfamily {
-    'Debian': {
-      $config_options.each { |$key|
-        if downcase($key) {
-          notice "${downcase($key)} will be installed"
-          file { "${pureftpd::params::conf_path}/conf/${key}" :
-            ensure  => file,
-            owner   => "root",
-            group   => "root",
-            replace => 'yes',
-            content  => "${downcase($key)}",
-          }
-        }
-      }
-    }
-    default: {
-      file { $pureftpd::params::conf_path:
+    'PAMAuthentication',].each |$key| {
+    if downcase($key) {
+      notice "${downcase($key)} will be installed"
+      file { "${pureftpd::params::conf_path}/conf/${key}" :
         ensure  => file,
-        content => template("${module_name}/${pureftpd::params::conf_erb}"),
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0644',
+        owner   => "root",
+        group   => "root",
+        replace => 'yes',
+        content  => "${downcase($key)}",
       }
     }
   }

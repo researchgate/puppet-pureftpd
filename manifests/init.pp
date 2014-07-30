@@ -114,7 +114,7 @@ class pureftpd (
 
   $safe_config = merge(
     $config,
-    { notify => "Class[ 'pureftpd::service' ]" },
+    { notify => Class['pureftpd::service'] },
     $enable_ldap,
     $enable_mysql,
     $enable_pgsql
