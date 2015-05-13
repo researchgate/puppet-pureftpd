@@ -37,7 +37,12 @@ class pureftpd::params {
         $package_name         = 'pure-ftpd-postgresql'
         $service_name    = 'pure-ftpd-postgresql'
         notice "${package_name} will be installed"
+      } else {
+        $package_name    = 'pure-ftpd'
+        $service_name    = 'pure-ftpd'
+        notice "${package_name} will be installed"
       }
+      
       $package_name_selinux = $package_name
 
       $config_dir      = '/etc/pure-ftpd'
