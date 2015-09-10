@@ -42,8 +42,8 @@ class pureftpd::config(
   $userbandwidth              = undef,
   $trustedip                  = undef,
   $altlog                     = undef,
-#  $pidfile                    = undef,
-#  $tlsciphersuite             = undef, # added post 1.0.31
+  $pidfile                    = undef,
+  $tlsciphersuite             = undef, # added post 1.0.31
   $maxidletime                = undef,
   $maxdiskusage               = undef,
   $trustedgid                 = undef,
