@@ -32,7 +32,7 @@ class pureftpd::config(
   $norename                   = undef,
   $customerproof              = undef,
   $notruncate                 = undef,
-  $filesystemcharset          = undef,
+  $fscharset                  = undef,
   $clientcharset              = undef,
   $syslogfacility             = undef,
   $fortunesfile               = undef,
@@ -42,8 +42,8 @@ class pureftpd::config(
   $userbandwidth              = undef,
   $trustedip                  = undef,
   $altlog                     = undef,
-  $pidfile                    = undef,
-  $tlsciphersuite             = undef, # added post 1.0.31
+#  $pidfile                    = undef,
+#  $tlsciphersuite             = undef, # added post 1.0.31
   $maxidletime                = undef,
   $maxdiskusage               = undef,
   $trustedgid                 = undef,
@@ -97,7 +97,7 @@ class pureftpd::config(
     'NoRename',
     'CustomerProof',
     'NoTruncate',
-    'FileSystemCharset',
+    'FSCharset',
     'ClientCharset',
     'SyslogFacility',
     'FortunesFile',
@@ -107,8 +107,8 @@ class pureftpd::config(
     'UserBandwidth',
     'TrustedIP',
     'AltLog',
-    'PIDFile',
-    'TLSCipherSuite',
+#    'PIDFile',
+#    'TLSCipherSuite',
     'MaxIdleTime',
     'MaxDiskUsage',
     'TrustedGID',
@@ -131,14 +131,14 @@ class pureftpd::config(
     'ExtAuth',
     'UnixAuthentication',
     'PAMAuthentication',].each |$key| {
-    if inline_template("<%= scope.lookupvar(@key.downcase) %>") != 'undef' {
-      notice "${key} = ${inline_template("<%= scope.lookupvar(@key.downcase) %>")} will be installed"
+    if inline_template('<%= scope.lookupvar(@key.downcase) %>') != 'undef' {
+      notice "${key} = ${inline_template('<%= scope.lookupvar(@key.downcase) %>')} will be installed"
       file { "${pureftpd::params::config_dir}/conf/${key}" :
         ensure  => file,
-        owner   => "root",
-        group   => "root",
+        owner   => 'root',
+        group   => 'root',
         replace => 'yes',
-        content  => inline_template("<%= scope.lookupvar(@key.downcase) %>"),
+        content  => inline_template('<%= scope.lookupvar(@key.downcase) %>'),
       }
     }
   }
