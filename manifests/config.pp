@@ -132,7 +132,6 @@ class pureftpd::config(
     'UnixAuthentication',
     'PAMAuthentication',].each |$key| {
     if inline_template('<%= scope.lookupvar(@key.downcase) %>') != 'undef' {
-      notice "${key} = ${inline_template('<%= scope.lookupvar(@key.downcase) %>')} will be installed"
       file { "${pureftpd::params::config_dir}/conf/${key}" :
         ensure  => file,
         owner   => 'root',
